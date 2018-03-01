@@ -1,10 +1,10 @@
-# Visualizing Gender Gap 
+# [Visualizing Gender Gap](https://eloaverona.github.io/gender_wage_gap/vis.html)
 #### By Eloá França Verona and Ali Mahad
 
 ### The goal
-Women are viral for economic growth, but their value is not reflect by positions and wages in labor market. The undervaluing of women's work and the under-utilisation of their skills is both a lot resource and a disadvantage to a deserving workforce.
+Women are vital for economic growth, but their value is not reflect by positions and wages in labor market. The undervaluing of women's work and the under-utilisation of their skills is both a lot resource and a disadvantage to a deserving workforce.
 
-**We wanted to visualize and compare performance of various countries in overcoming wage gap.**
+**We wanted to visualize and compare performance of various countries in overcoming wage gap. [Click here to see our visualization](https://eloaverona.github.io/gender_wage_gap/vis.html).**
 
 ### The data
 The data is from the  [Organization fo Economic Co-operation and Development](https://data.oecd.org/) (OECD)
