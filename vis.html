@@ -2,6 +2,13 @@
 <meta charset="utf-8">
 <style>
 
+    .footer {
+        font-size: 1vw;
+    }
+    #github_page_link{
+        text-decoration: underline;
+        color: #0100b4
+    }
     .ticks {
         font-size: 10px;
     }
@@ -356,6 +363,7 @@
 </style>
 <body>
 <svg class="chart"></svg>
+
 </body>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -459,6 +467,11 @@
 
             var svg = d3.select("svg");
             var g = svg.append("g");
+            var footer = svg.append("g");
+            footer.attr("class", "footer").append("text")
+                .text("Created by Eloá França Verona and Ali Mahad. ").attr("id", "footer")
+                .append("a").text("Click here for more information.").attr("xlink:href", "https://eloaverona.github.io/gender_wage_gap/")
+                .attr("id", "github_page_link");
 
             var tooltip = d3.select("body")
                 .append("div")
@@ -821,6 +834,16 @@
                 .call(d3.axisLeft(y).ticks(10).tickFormat(function (d) {
                     return d + "%"
                 }));
+
+            var footer = svg.select(".footer");
+            footer.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            footer.selectAll("#footer")
+                .attr("x", width * 0.65)
+                .attr("y", height * 1.053);
+
+
+
 
 
         }
