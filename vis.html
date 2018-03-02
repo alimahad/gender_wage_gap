@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+    .help_button_box{
+        fill:brown;
+        stroke: brown;
+        opacity: 0.8;
+        stroke-opacity: 0.5;
+    }
 
+    .help_button_question_mark{
+        fill: white;
+        font-size: 1.5vw;
+        cursor: default;
+    }
     .footer {
         font-size: 1vw;
     }
+
     #github_page_link{
         text-decoration: underline;
         color: #0100b4
@@ -478,6 +490,9 @@
                 .attr("class", "toolTip")
                 .style("display", "none");
 
+
+
+
             var modal = d3.select("body")
                 .append("div")
                 .attr('id', 'country_modal')
@@ -619,6 +634,29 @@
 
                 });
 
+            var help_button = g.append("rect")
+                .attr("class", "help_button_box help_button_bar")
+                .attr("id", "bar_graph_help");
+
+
+            g.append("text")
+                .attr("class", "help_button_question_mark help_button_bar")
+                .attr("id", "bar_graph_help_text")
+                .text("?");
+
+            g.selectAll(".help_button_bar")
+                .on("mouseover", function (d) {
+                    tooltip
+                        .style("display", "inline-block")
+                        .style("left", d3.event.pageX + "px")
+                        .style("top", d3.event.pageY  + "px")
+                        .html("<span class = 'countryValue'>Click on any of the bars for more information on that country.</span>" +
+                            "<br><span class = 'countryName'><strong> Data Source: </strong><span>OECD</span>");
+                })
+                .on("mouseout", function (d) {
+                    tooltip.style("display", "none");
+                });
+
             g.selectAll(".label")
                 .data(data).enter()
                 .append("text")
@@ -678,6 +716,18 @@
             modal_g.select("#rank").append("text")
                 .attr("class", "rank_label")
                 .attr("id", "rank_label_wage");
+
+            var help_button = modal_g.append("rect")
+                .attr("class", "help_button_box help_button_modal")
+                .attr("id", "modal_help");
+
+
+            modal_g.append("text")
+                .attr("class", "help_button_question_mark help_button_modal")
+                .attr("id", "modal_help_text")
+                .text("?");
+
+
 
             var slider = modal_g.select(".slider");
             slider.insert("circle")
@@ -842,7 +892,17 @@
                 .attr("x", width * 0.65)
                 .attr("y", height * 1.053);
 
+            g.select("#bar_graph_help")
+                .attr("x", margin.left * 0.2)
+                .attr("y",  margin.top* 0.2)
+                .attr("rx", margin.left * 0.2 * 0.5)
+                .attr("ry", margin.left * 0.2 * 0.5)
+                .attr("width", width * 0.02)
+                .attr("height",  width * 0.02);
 
+            g.select('#bar_graph_help_text')
+                .attr("x", (margin.left * 0.2) + (width * 0.02)/2.8)
+                .attr("y", (margin.top* 0.2) + (width * 0.02)/1.3);
 
 
 
@@ -941,6 +1001,19 @@
                 })
                 .on("click", function (d) {
                     create_graph_modal(d.CountryName, wage_data_all, emp_data_all, wage_gap_rank, emp_gap_rank, countryList, minMaxYear);
+                });
+
+            g.selectAll(".help_button_modal")
+                .on("mouseover", function (d) {
+                    modal_tooltip
+                        .style("display", "inline-block")
+                        .style("left", d3.event.pageX - 150+ "px")
+                        .style("top", d3.event.pageY -150 + "px")
+                        .html("<span class = 'countryValue'>Click on any of the circles for more information on that country.</span>" +
+                            "<br> <span class = 'countryName'><strong> Data Source: </strong><span> OECD</span>");
+                })
+                .on("mouseout", function (d) {
+                    modal_tooltip.style("display", "none");
                 });
 
             g.select("#rank_emp").selectAll(".rank_circle_emp").remove();
@@ -1360,6 +1433,8 @@
             g.select(".legend")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+
             g.select("#emp_legend_avg")
                 .attr("x", graph_width * 0.001)
                 .attr("y", height - 1.95 * margin.bottom);
@@ -1496,7 +1571,17 @@
                 .attr("x", 1.5*graph_width)
                 .attr("y", - 5);
 
+            g.select("#modal_help")
+                .attr("x", width * 0.87)
+                .attr("y",   height * 0.9)
+                .attr("rx", margin.left * 0.2 * 0.5)
+                .attr("ry", margin.left * 0.2 * 0.5)
+                .attr("width", width * 0.025)
+                .attr("height",  width * 0.025);
 
+            g.select('#modal_help_text')
+                .attr("x", (width * 0.87) + (width * 0.025)/2.8)
+                .attr("y", (height * 0.9) + (width * 0.025)/1.3);
 
 
         }
